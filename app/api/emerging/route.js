@@ -10,6 +10,7 @@ export default function EmergingNews() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Try to load cached verified results (sessionStorage)
   useEffect(() => {
     const cached = sessionStorage.getItem("emergingArticles");
     if (cached) {
@@ -35,9 +36,10 @@ export default function EmergingNews() {
             items.push({ title, link, image, verdict: null });
           });
         }
+        // dedupe by title
         const unique = Array.from(new Map(items.map(i => [i.title, i])).values()).slice(0, 12);
         setArticles(unique);
-        sessionStorage.setItem("emergingArticles", JSON.stringify(unique));
+        sessionStorage.setItem("emergingArticles", JSON.stringify(unique)); // save raw list (no verdicts)
       } catch (err) {
         console.error("fetch rss error", err);
       } finally {
@@ -49,8 +51,9 @@ export default function EmergingNews() {
   const verifyArticle = async (index) => {
     const articlesCopy = [...articles];
     const a = articlesCopy[index];
-    if (!a || a.verdict) return;
+    if (!a || a.verdict) return; // already verified
 
+    // optimistic update
     articlesCopy[index] = { ...a, verdict: "Verifying..." };
     setArticles(articlesCopy);
 
@@ -65,6 +68,7 @@ export default function EmergingNews() {
       articlesCopy[index] = { ...a, verdict };
       setArticles(articlesCopy);
 
+      // persist verdicts in sessionStorage (so refresh won't call API again)
       sessionStorage.setItem("emergingArticles", JSON.stringify(articlesCopy));
     } catch (err) {
       console.error("verify article error", err);
