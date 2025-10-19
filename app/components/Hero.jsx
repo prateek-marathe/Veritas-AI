@@ -47,7 +47,7 @@ export default function Hero() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            src="\..\..\assets\ai-img.jpeg" // replace with your own AI illustration
+            src="/assets/ai-img.jpeg" // replace with your own AI illustration
             alt="AI Analysis Illustration"
             className="w-full max-w-lg mx-auto"
           />
