@@ -33,7 +33,7 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.6 }}
           >
             <a
-              href="#verifier"
+              href="#ClaimVerifier"
               className="inline-block px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition"
             >
               Start Verifying
@@ -47,7 +47,7 @@ export default function Hero() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            src="..\..\assets\ai-img.jpeg" // replace with your own AI illustration
+            src="\..\..\assets\ai-img.jpeg" // replace with your own AI illustration
             alt="AI Analysis Illustration"
             className="w-full max-w-lg mx-auto"
           />

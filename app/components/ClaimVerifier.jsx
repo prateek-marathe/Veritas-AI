@@ -27,7 +27,7 @@ export default function ClaimVerifier() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto my-10 text-white">
+    <div className="max-w-2xl mx-auto my-10 text-white" id="ClaimVerifier">
       <h2 className="text-3xl font-bold mb-4">Claim Verifier</h2>
       <textarea
         value={statement}
